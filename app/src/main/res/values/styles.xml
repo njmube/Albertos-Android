@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+
+
+    <color name="primary_dark">#AF2A4C</color>
+    <color name="primary">#D60B52</color>
+    <color name="accent">#7DD287</color>
+    <color name="text_color">#FFFFFF</color>
+    <color name="text_color_black">#000000</color>
+    <color name="tabsScrollColor">#AF2A4C</color>
+    <color name="background_view">#FFFFFF</color>
+</resources>

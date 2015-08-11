@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/bg_app_2"
+        >
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="200dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo_app"
+            android:layout_marginTop="10dp"
+            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="-32dp"
+            android:layout_marginBottom="25dp"
+            android:background="@color/background_view"
+            android:weightSum="1"
+            android:id="@+id/layoutPizzaIncompleta"
+            android:visibility="gone"
+            >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="41dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/llevas"
+                            android:textSize="30dp"
+                            android:textColor="@color/text_color_black"
+                            android:id="@+id/textLlevas"
+                            android:layout_alignParentTop="true"
+                            android:layout_toLeftOf="@+id/textNumberVisits"
+                            android:layout_toStartOf="@+id/textNumberVisits"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="50dp"
+                            android:textColor="@color/primary"
+                            android:id="@+id/textNumberVisits"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/visitas"
+                            android:textSize="30dp"
+                            android:textColor="@color/text_color_black"
+                            android:id="@+id/textVisitas"
+                            android:layout_alignParentTop="true"
+                            android:layout_toRightOf="@+id/textNumberVisits"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/leyenda_acumula"
+                        android:textSize="8dp"
+                        android:textColor="@color/text_color_black"
+                        android:id="@+id/textAcumula"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <Button
+                        android:id="@+id/btnCapturaTuCodigo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@color/primary_dark"
+                        android:textColor="@color/text_color"
+                        android:text="@string/captura_codigo"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:layout_width="214dp"
+                        android:layout_height="211dp"
+                        android:layout_marginTop="15dp"
+                        android:id="@+id/img_pizza"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/pizza_0"/>
+
+                    <ImageView
+                        android:layout_width="304dp"
+                        android:layout_height="43dp"
+                        android:id="@+id/img_condiciones"
+                        android:layout_marginTop="25dp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/condiciones"
+                        android:layout_weight="0.13" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="-32dp"
+            android:layout_marginBottom="25dp"
+            android:background="@color/background_view"
+            android:weightSum="1"
+            android:id="@+id/layoutPizzaCompleta"
+            >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="253dp"
+                        android:layout_height="432dp"
+                        android:id="@+id/imageView"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/felicidades"
+                        android:scaleType="centerInside"
+                         />
+
+                    <Button
+                        android:id="@+id/btnPideTuPizza"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@color/primary_dark"
+                        android:textColor="@color/text_color"
+                        android:text="@string/pide_tu_pizza"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-30dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="304dp"
+                        android:layout_height="43dp"
+                        android:id="@+id/img_condiciones_gratis"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/condiciones_gratis"
+                        android:layout_weight="0.13" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
