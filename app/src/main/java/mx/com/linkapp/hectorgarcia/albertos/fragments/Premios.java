@@ -143,24 +143,27 @@ public class Premios extends Fragment {
                     String message = json.getString("message");
                     if (success) {
                         if (code == 0) {
-                            //Looper.prepare();
-                            //Toast.makeText(context, "El registro del código se ha realizado con éxito. Gracias por su visita.", Toast.LENGTH_SHORT).show();
-                            //Looper.loop();
+                            mostrarMensaje("El registro del código se ha realizado con éxito. Gracias por su visita.");
                             contadorVisitas++;
                             cambiarVisitas();
                         } else {
-                            /*Looper.prepare();
-                            Toast.makeText(context, "Error: " + message, Toast.LENGTH_SHORT).show();
-                            Looper.loop();*/
+                            mostrarMensaje("Error: " + message);
                         }
                     } else {
-                        /*Looper.prepare();
-                        Toast.makeText(context, "Ocurrió un error al validar el código, inténtelo de nuevo más tarde", Toast.LENGTH_SHORT).show();
-                        Looper.loop();*/
+                        mostrarMensaje("Ocurrió un error al validar el código, inténtelo de nuevo más tarde");
                     }
                 } catch (Exception e) {
                     Log.v("Error Log", e.getMessage());
                 }
+            }
+        });
+    }
+
+    private void mostrarMensaje(final String mensaje){
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(view.getContext(), mensaje, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -231,14 +234,10 @@ public class Premios extends Fragment {
                             contadorVisitas = visitas;
                             cambiarVisitas();
                         } else {
-                            Looper.prepare();
-                            Toast.makeText(context, "Error: " + message, Toast.LENGTH_SHORT).show();
-                            Looper.loop();
+                            mostrarMensaje("Error: " + message);
                         }
                     } else {
-                        Looper.prepare();
-                        Toast.makeText(context, "Ocurrió un error al traer el número de visitas, inténtelo de nuevo más tarde", Toast.LENGTH_SHORT).show();
-                        Looper.loop();
+                        mostrarMensaje("Ocurrió un error al traer el número de visitas, inténtelo de nuevo más tarde");
                     }
                 } catch (Exception e) {
                     Log.v("Error Log", e.getMessage());

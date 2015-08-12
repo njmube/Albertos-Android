@@ -33,7 +33,6 @@
             android:background="@color/background_view"
             android:weightSum="1"
             android:id="@+id/layoutPizzaIncompleta"
-            android:visibility="gone"
             >
 
             <ScrollView
@@ -148,6 +147,7 @@
             android:background="@color/background_view"
             android:weightSum="1"
             android:id="@+id/layoutPizzaCompleta"
+            android:visibility="gone"
             >
 
             <ScrollView

@@ -186,7 +186,8 @@
                 android:textColor="@color/text_color"
                 android:text="@string/registrar_premio"
                 android:layout_marginTop="25dp"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btnLogOut"

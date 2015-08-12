@@ -65,6 +65,16 @@ public class Login extends Fragment {
             mostrarLayoutLogin();
         }else{
             mostrarLayoutUserLogged();
+            Button btnRegPizza = (Button) view.findViewById(R.id.btnRegPizza);
+
+            int perfil = sharedpreferences.getInt("Perfil", 0);
+            if(perfil == 2){ //ES SUPERVISOR
+                btnRegPizza.setVisibility(LinearLayout.VISIBLE);
+            }else{
+                btnRegPizza.setVisibility(LinearLayout.GONE);
+            }
+
+            layoutLogin.setVisibility(LinearLayout.VISIBLE);
 
             TextView NombreUsuario = (TextView) this.view.findViewById(R.id.nombreTextLogged);
             TextView EmailUsuario = (TextView) this.view.findViewById(R.id.emailTextLogged);
@@ -132,7 +142,6 @@ public class Login extends Fragment {
     }
 
     private void iniciar_sesion(final View v){
-        //creaSesion(v, 1,"Hector Garcia","mail@gmail.com",1);
         if(this.validarFormulario(v)) {
             String data = this.getFormData(v);
             API_LinkApp API = new API_LinkApp();
@@ -154,20 +163,13 @@ public class Login extends Fragment {
                                 int userPerfil = json.getInt("perfil");
                                 String NombreCompleto = userNombre+" "+userApellidos;
 
-                                creaSesion(userId,NombreCompleto,userEmail,userPerfil);
-
-                                Looper.prepare();
-                                Toast.makeText(context, "Bienvenido: "+NombreCompleto, Toast.LENGTH_LONG).show();
-                                Looper.loop();
+                                creaSesion(userId, NombreCompleto, userEmail, userPerfil);
+                                mostrarMensaje("Bienvenido: " + NombreCompleto);
                             } else {
-                                Looper.prepare();
-                                Toast.makeText(context, "Error: " + message, Toast.LENGTH_SHORT).show();
-                                Looper.loop();
+                                mostrarMensaje("Error: " + message);
                             }
                         } else {
-                            Looper.prepare();
-                            Toast.makeText(context, "Ocurrió un error al Registrar sus datos, inténtelo de nuevo más tarde", Toast.LENGTH_SHORT).show();
-                            Looper.loop();
+                            mostrarMensaje("Ocurrió un error al Registrar sus datos, inténtelo de nuevo más tarde");
                         }
                     } catch (Exception e) {
                         Log.v("Error Log", e.getMessage());
@@ -191,8 +193,8 @@ public class Login extends Fragment {
 
                 EditText Email = (EditText) view.findViewById(R.id.emailText);
                 EditText Password = (EditText) view.findViewById(R.id.passwordText);
-                EditText NombreUsuario = (EditText) view.findViewById(R.id.nombreTextLogged);
-                EditText EmailUsuario = (EditText) view.findViewById(R.id.emailTextLogged);
+                TextView NombreUsuario = (TextView) view.findViewById(R.id.nombreTextLogged);
+                TextView EmailUsuario = (TextView) view.findViewById(R.id.emailTextLogged);
 
                 Email.setText("");
                 Password.setText("");
@@ -232,8 +234,8 @@ public class Login extends Fragment {
         editor.clear();
         editor.commit();
 
-        EditText NombreUsuario = (EditText) this.view.findViewById(R.id.nombreTextLogged);
-        EditText EmailUsuario = (EditText) this.view.findViewById(R.id.emailTextLogged);
+        TextView NombreUsuario = (TextView) this.view.findViewById(R.id.nombreTextLogged);
+        TextView EmailUsuario = (TextView) this.view.findViewById(R.id.emailTextLogged);
 
         NombreUsuario.setText("");
         EmailUsuario.setText("");
@@ -308,6 +310,15 @@ public class Login extends Fragment {
         });
         //alertDialog.setIcon(R.drawable.common_signin_btn_icon_dark);
         alertDialog.show();
+    }
+
+    private void mostrarMensaje(final String mensaje){
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(view.getContext(), mensaje, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public interface LoginCallBack {

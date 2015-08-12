@@ -1,5 +1,6 @@
 package mx.com.linkapp.hectorgarcia.albertos;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,12 +23,14 @@ public class RegistrarPizza extends ActionBarActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
+    private Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_pizza);
         sharedpreferences = getBaseContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        this.activity = this;
         leerQR();
     }
 
@@ -65,8 +68,9 @@ public class RegistrarPizza extends ActionBarActivity {
     }
 
     private void confirmPizzaCobrada(final String contentQR){
-        registrarPizzaCobrada(contentQR);
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+        //registrarPizzaCobrada(contentQR);
+        try{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder
                 .setMessage("El código ha sido detectado, ¿Desea continuar con el registro de la pizza?.")
                 .setPositiveButton("SI",  new DialogInterface.OnClickListener() {
@@ -83,7 +87,10 @@ public class RegistrarPizza extends ActionBarActivity {
                     }
                 })
                 .show();
-                */
+        }catch (Exception e){
+            Log.d("Error",e.getMessage());
+        }
+
     }
 
     private void registrarPizzaCobrada(String contentQR){
@@ -101,12 +108,15 @@ public class RegistrarPizza extends ActionBarActivity {
                     String message = json.getString("message");
                     if (success) {
                         if (code == 0) {
+                            mostrarMensaje("El premio ha sido registrado exitosamente.");
                             cerrarVentana();
                         } else {
-                            //Toast.makeText(getApplicationContext(), "Error: " + message, Toast.LENGTH_LONG).show();
+                            mostrarMensaje("Error: " + message);
+                            cerrarVentana();
                         }
                     } else {
-                        //Toast.makeText(getApplicationContext(), "Ocurrió un error al registrar el premio, inténtelo de nuevo más tarde", Toast.LENGTH_LONG).show();
+                        mostrarMensaje("Ocurrió un error al registrar el premio, inténtelo de nuevo más tarde");
+                        cerrarVentana();
                     }
                 } catch (Exception e) {
                     Log.v("Error Log", e.getMessage());
@@ -118,8 +128,18 @@ public class RegistrarPizza extends ActionBarActivity {
 
     private void cerrarVentana(){
         Intent intent = new Intent();
-        setResult(RESULT_OK,intent );
+        setResult(RESULT_OK, intent);
         finish();
+    }
+
+    private void mostrarMensaje(final String mensaje){
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(activity, mensaje, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public interface RegPizzaCallBack {
